@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" id="inp"> 
+    <button onclick="getdata()">get</button>
+    <div id="disp"></div>
+    <div id="dis"></div>
+    <div id="displ"></div>
+    <div id="displa"></div>
+
+    <script>
+        const getdata=async()=> {
+            cityname = inp.value
+            console.log(cityname);
+            var apikey = "67fe3dbd6f28d657f591dc7e70e1bc94"
+        let url3='https://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&appid=' + apikey
+       
+        let response =await fetch(url3)
+        let convertRes= await response.json()
+        console.log(convertRes)
+        
+        disp.innerHTML = (convertRes.name)
+        dis.innerHTML = (convertRes.sys.country)
+        converted = convertRes.weather
+        for (let index = 0; index < converted.length; index++) {
+            displ.innerHTML = (converted[0].main)            
+        }
+        displa.innerHTML = Math.ceil(convertRes.main.temp - 273)
+        
+       
+        }
+    </script>
+</body>
+</html>
